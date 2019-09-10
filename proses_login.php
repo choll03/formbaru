@@ -1,21 +1,25 @@
 <?php  
+ob_start();
+session_start();
 
-$user = $_POST['user'];
-$password = $_POST['password'];
+	$user = $_POST['user'];
+	$password = $_POST['password'];
 
-if ( isset ($_POST['submit']) ){
 
-	if ($_POST['user'] == "nur" &&
-		$_POST['password'] == "123"){
+	if ($_POST['user'] == "nur" && $_POST['password'] == "123"){
 
-		header('Location : dashboard.php');
-		echo 'login berhasil';
+		$_SESSION['login'] = true;
+		$_SESSION['user'] = $user;
+
+		header('Location: index.php');
+		// echo 'login berhasil';
 		
 	}else {
-		header('Location : login.php');
-		echo 'login gagal!'; 
+
+		$_SESSION['error'] = true;
+		header('Location: login.php');
+		// echo 'login gagal!'; 
 	}
-}
 
 ?>
 
